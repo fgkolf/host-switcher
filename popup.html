@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Host Switcher</title>
+  <style>
+    :root {
+        --primary-color: #078080;
+        --background-color: #f8f5f2;
+        --secondary-background-color: #fffffe;
+        --text-color: #222525;
+        --border-color: #f45d48;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background: var(--background-color);
+      width: 350px;
+      color: var(--text-color);
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .host-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+      padding: 12px;
+      font-size: 14px;
+      background: var(--secondary-background-color);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:hover {
+        .remove-button {
+            opacity: 1;
+            visibility: visible;
+        }
+      }
+    }
+
+    .host-text {
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .remove-button {
+      background: url('trash.png') center center no-repeat;
+      background-size: 12px 16px; /* Adjust ratio - width smaller than height for better trash can proportions */
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      margin-left: 10px;
+      opacity: 0;
+      visibility: hidden;
+      display: flex; /* Always display to reserve space */
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    }
+
+    .remove-button:hover {
+      transform: rotate(15deg);
+    }
+
+    .host-input {
+      margin: 10px 0;
+      padding: 10px;
+      width: calc(100% - 22px);
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--secondary-background-color);
+    }
+
+    .host-input:focus {
+      outline: none;
+      border: 2px solid var(--border-color);
+    }
+
+    .add-button {
+      padding: 12px;
+      width: 100%;
+      font-size: 14px;
+      background: var(--primary-color);
+      color: var(--secondary-background-color);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .add-button:hover {
+      filter: brightness(95%);
+    }
+
+    .no-hosts {
+      text-align: center;
+      font-style: italic;
+      padding: 20px;
+    }
+
+    .error-message {
+        display: none;
+        color: #ff4444;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <div class="section-title">Your Hosts</div>
+    <div class="host-list"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Add New Host</div>
+    <input type="text" class="host-input" placeholder="e.g. http://localhost:3000" />
+    <button class="add-button">Add Host</button>
+    <div class="error-message"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
