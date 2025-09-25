@@ -53,14 +53,17 @@ document.addEventListener('DOMContentLoaded', function() {
     hosts.forEach(function(host, index) {
       const hostElement = document.createElement('div');
       hostElement.className = 'host-button';
-      hostElement.innerHTML = `
-        <span class="host-text">${host}</span>
+
+      const truncated = host.length > 35
+      const displayHost = truncated ? host.substring(0, 35) + '...' : host;
+
+        hostElement.innerHTML = `
+        <span class="host-text" title="${truncated ? host : ''}">${displayHost}</span>
         <button class="remove-button" data-index="${index}"></button>
       `;
 
       // Make the whole host button clickable except the remove button
       hostElement.addEventListener('click', function(e) {
-        if (e.target.classList.contains('remove-button')) return;
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
           const tab = tabs[0];
           openNewTabWithHost(tab.url, host);

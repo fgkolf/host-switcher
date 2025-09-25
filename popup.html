@@ -8,7 +8,7 @@
         --background-color: #f8f5f2;
         --secondary-background-color: #fffffe;
         --text-color: #222525;
-        --border-color: #f45d48;
+        --border-color: #078080;
     }
 
     body {
@@ -42,6 +42,9 @@
       cursor: pointer;
 
       &:hover {
+        border-bottom-width: 2px;
+        border-right-width: 2px;
+
         .remove-button {
             opacity: 1;
             visibility: visible;
@@ -83,13 +86,13 @@
       width: calc(100% - 22px);
       font-size: 14px;
       border-radius: 6px;
-      border: 1px solid var(--border-color);
+      border: none;
       background: var(--secondary-background-color);
     }
 
     .host-input:focus {
       outline: none;
-      border: 2px solid var(--border-color);
+      border: 1px solid var(--border-color);
     }
 
     .add-button {
